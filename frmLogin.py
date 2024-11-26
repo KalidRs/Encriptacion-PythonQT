@@ -15,6 +15,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         usuario = self.txtUsuario.text()
         contrasena = self.txtContrasena.text()
 
+        # Contraseña y usuario
         if usuario == "kalid" and contrasena == "1234":
             self.mostrar_mensaje("Bienvenido", "Accedido correctamente.")
             self.openMenu()  
