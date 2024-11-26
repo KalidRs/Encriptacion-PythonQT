@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>frmEncriptar</class>
+ <widget class="QMainWindow" name="frmEncriptar">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>682</width>
+    <height>477</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>671</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="encriptartexto">
+     <attribute name="title">
+      <string>encriptar texto</string>
+     </attribute>
+     <widget class="QPushButton" name="guardar">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>200</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Guardar Archivo</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Downloads/disco-flexible.png</normaloff>../../../Downloads/disco-flexible.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="cargar">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>160</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Cargar archivo</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Downloads/subir.png</normaloff>../../../Downloads/subir.png</iconset>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>250</y>
+        <width>181</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Mensaje Encriptado</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="encriptar">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>40</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Encriptar</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Downloads/proteger.png</normaloff>../../../Downloads/proteger.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="desencriptar">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>80</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>desencriptar</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Downloads/encriptado.png</normaloff>../../../Downloads/encriptado.png</iconset>
+      </property>
+     </widget>
+     <widget class="QLabel" name="textoencriptado">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>280</y>
+        <width>411</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="limpiar">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>120</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Limpiar</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Downloads/barriendo.png</normaloff>../../../Downloads/barriendo.png</iconset>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>0</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Mensaje</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="contenido">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>40</y>
+        <width>421</width>
+        <height>191</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="encriptarimagen">
+     <attribute name="title">
+      <string>encriptar imagen</string>
+     </attribute>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>40</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Imagen:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="encriptar_2">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>100</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Encriptar</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Downloads/proteger.png</normaloff>../../../Downloads/proteger.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="desencriptar_2">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>140</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>desencriptar</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Downloads/encriptado.png</normaloff>../../../Downloads/encriptado.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="limpiar_2">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>180</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Limpiar</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../../../Downloads/barriendo.png</normaloff>../../../Downloads/barriendo.png</iconset>
+      </property>
+     </widget>
+     <widget class="QLabel" name="imagenencriptada">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>90</y>
+        <width>361</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>682</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
