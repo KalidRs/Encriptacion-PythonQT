@@ -11,13 +11,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from encriptacion import *
 from PyQt5.QtWidgets import QFileDialog
-import cv2
-import numpy as np
-from PyQt5.QtGui import QImage, QPixmap
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QMessageBox
-
-
+from encriptacion import encriptar_imagen, desencriptar_imagen
 
 
 class Ui_frmEncriptar(object):
@@ -27,92 +21,100 @@ class Ui_frmEncriptar(object):
         self.centralwidget = QtWidgets.QWidget(frmEncriptar)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(0, 0, 671, 431))
+        self.tabWidget.setGeometry(QtCore.QRect(0, 0, 681, 441))
         self.tabWidget.setObjectName("tabWidget")
-        self.encriptartexto = QtWidgets.QWidget()
-        self.encriptartexto.setObjectName("encriptartexto")
-        self.guardar = QtWidgets.QPushButton(self.encriptartexto)
-        self.guardar.setGeometry(QtCore.QRect(510, 200, 101, 31))
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../../Downloads/disco-flexible.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.guardar.setIcon(icon)
-        self.guardar.setObjectName("guardar")
-        self.cargar = QtWidgets.QPushButton(self.encriptartexto)
-        self.cargar.setGeometry(QtCore.QRect(510, 160, 101, 31))
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../../../Downloads/subir.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.cargar.setIcon(icon1)
-        self.cargar.setObjectName("cargar")
-        self.label_2 = QtWidgets.QLabel(self.encriptartexto)
-        self.label_2.setGeometry(QtCore.QRect(80, 250, 181, 21))
+        self.texto = QtWidgets.QWidget()
+        self.texto.setObjectName("texto")
+        self.label_2 = QtWidgets.QLabel(self.texto)
+        self.label_2.setGeometry(QtCore.QRect(40, 290, 181, 21))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.label_2.setFont(font)
         self.label_2.setObjectName("label_2")
-        self.encriptar = QtWidgets.QPushButton(self.encriptartexto)
-        self.encriptar.setGeometry(QtCore.QRect(510, 40, 101, 31))
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../../../Downloads/proteger.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.encriptar.setIcon(icon2)
-        self.encriptar.setObjectName("encriptar")
-        self.desencriptar = QtWidgets.QPushButton(self.encriptartexto)
-        self.desencriptar.setGeometry(QtCore.QRect(510, 80, 101, 31))
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../../../Downloads/encriptado.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.desencriptar.setIcon(icon3)
-        self.desencriptar.setObjectName("desencriptar")
-        self.textoencriptado = QtWidgets.QLabel(self.encriptartexto)
-        self.textoencriptado.setGeometry(QtCore.QRect(80, 280, 411, 111))
-        self.textoencriptado.setText("")
-        self.textoencriptado.setObjectName("textoencriptado")
-        self.limpiar = QtWidgets.QPushButton(self.encriptartexto)
-        self.limpiar.setGeometry(QtCore.QRect(510, 120, 101, 31))
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("../../../Downloads/barriendo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.limpiar.setIcon(icon4)
-        self.limpiar.setObjectName("limpiar")
-        self.label = QtWidgets.QLabel(self.encriptartexto)
-        self.label.setGeometry(QtCore.QRect(70, 0, 151, 31))
+        self.label = QtWidgets.QLabel(self.texto)
+        self.label.setGeometry(QtCore.QRect(30, 40, 151, 31))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label.setFont(font)
         self.label.setObjectName("label")
-        self.contenido = QtWidgets.QTextEdit(self.encriptartexto)
-        self.contenido.setGeometry(QtCore.QRect(70, 40, 421, 191))
+        self.encriptar = QtWidgets.QPushButton(self.texto)
+        self.encriptar.setGeometry(QtCore.QRect(530, 80, 121, 31))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("encriptado.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.encriptar.setIcon(icon)
+        self.encriptar.setIconSize(QtCore.QSize(25, 25))
+        self.encriptar.setObjectName("encriptar")
+        self.guardar = QtWidgets.QPushButton(self.texto)
+        self.guardar.setGeometry(QtCore.QRect(530, 240, 121, 31))
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("flecha-hacia-abajo.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.guardar.setIcon(icon1)
+        self.guardar.setObjectName("guardar")
+        self.limpiar = QtWidgets.QPushButton(self.texto)
+        self.limpiar.setGeometry(QtCore.QRect(530, 160, 121, 31))
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap("papelera-de-reciclaje.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.limpiar.setIcon(icon2)
+        self.limpiar.setObjectName("limpiar")
+        self.contenido = QtWidgets.QTextEdit(self.texto)
+        self.contenido.setGeometry(QtCore.QRect(30, 80, 471, 191))
         self.contenido.setObjectName("contenido")
-        self.tabWidget.addTab(self.encriptartexto, "")
-        self.encriptarimagen = QtWidgets.QWidget()
-        self.encriptarimagen.setObjectName("encriptarimagen")
-        self.label_3 = QtWidgets.QLabel(self.encriptarimagen)
-        self.label_3.setGeometry(QtCore.QRect(40, 40, 151, 31))
+        self.cargar = QtWidgets.QPushButton(self.texto)
+        self.cargar.setGeometry(QtCore.QRect(530, 200, 121, 31))
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("arriba.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.cargar.setIcon(icon3)
+        self.cargar.setObjectName("cargar")
+        self.desencriptar = QtWidgets.QPushButton(self.texto)
+        self.desencriptar.setGeometry(QtCore.QRect(530, 120, 121, 31))
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap("desencriptado.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.desencriptar.setIcon(icon4)
+        self.desencriptar.setIconSize(QtCore.QSize(25, 25))
+        self.desencriptar.setObjectName("desencriptar")
+        self.textoencriptado = QtWidgets.QLabel(self.texto)
+        self.textoencriptado.setGeometry(QtCore.QRect(40, 330, 611, 71))
+        self.textoencriptado.setText("")
+        self.textoencriptado.setObjectName("textoencriptado")
+        self.tabWidget.addTab(self.texto, "")
+        self.imagen = QtWidgets.QWidget()
+        self.imagen.setObjectName("imagen")
+        self.imagenencriptada = QtWidgets.QLabel(self.imagen)
+        self.imagenencriptada.setGeometry(QtCore.QRect(20, 70, 331, 171))
+        self.imagenencriptada.setText("")
+        self.imagenencriptada.setObjectName("imagenencriptada")
+        self.label_3 = QtWidgets.QLabel(self.imagen)
+        self.label_3.setGeometry(QtCore.QRect(20, 10, 361, 51))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
-        self.encriptar_2 = QtWidgets.QPushButton(self.encriptarimagen)
-        self.encriptar_2.setGeometry(QtCore.QRect(420, 100, 101, 31))
-        self.encriptar_2.setIcon(icon2)
-        self.encriptar_2.setObjectName("encriptar_2")
-        self.desencriptar_2 = QtWidgets.QPushButton(self.encriptarimagen)
-        self.desencriptar_2.setGeometry(QtCore.QRect(420, 140, 101, 31))
-        self.desencriptar_2.setIcon(icon3)
-        self.desencriptar_2.setObjectName("desencriptar_2")
-        self.limpiar_2 = QtWidgets.QPushButton(self.encriptarimagen)
-        self.limpiar_2.setGeometry(QtCore.QRect(420, 180, 101, 31))
-        self.limpiar_2.setIcon(icon4)
+        self.limpiar_2 = QtWidgets.QPushButton(self.imagen)
+        self.limpiar_2.setGeometry(QtCore.QRect(520, 150, 121, 31))
+        self.limpiar_2.setIcon(icon2)
         self.limpiar_2.setObjectName("limpiar_2")
-        self.cargar_2 = QtWidgets.QPushButton(self.encriptarimagen)
-        self.cargar_2.setGeometry(QtCore.QRect(420, 220, 101, 31))
-        self.cargar_2.setIcon(icon1)
+        self.guardar_2 = QtWidgets.QPushButton(self.imagen)
+        self.guardar_2.setGeometry(QtCore.QRect(520, 230, 121, 31))
+        self.guardar_2.setIcon(icon1)
+        self.guardar_2.setObjectName("guardar_2")
+        self.encriptar_2 = QtWidgets.QPushButton(self.imagen)
+        self.encriptar_2.setGeometry(QtCore.QRect(520, 70, 121, 31))
+        self.encriptar_2.setIcon(icon)
+        self.encriptar_2.setIconSize(QtCore.QSize(25, 25))
+        self.encriptar_2.setObjectName("encriptar_2")
+        self.cargar_2 = QtWidgets.QPushButton(self.imagen)
+        self.cargar_2.setGeometry(QtCore.QRect(520, 190, 121, 31))
+        self.cargar_2.setIcon(icon3)
         self.cargar_2.setObjectName("cargar_2")
-        self.imagenencriptada = QtWidgets.QLabel(self.encriptarimagen)
-        self.imagenencriptada.setGeometry(QtCore.QRect(30, 90, 361, 231))
-        self.imagenencriptada.setText("")
-        self.imagenencriptada.setObjectName("imagenencriptada")
-        self.tabWidget.addTab(self.encriptarimagen, "")
+        self.desencriptar_2 = QtWidgets.QPushButton(self.imagen)
+        self.desencriptar_2.setGeometry(QtCore.QRect(520, 110, 121, 31))
+        self.desencriptar_2.setIcon(icon4)
+        self.desencriptar_2.setIconSize(QtCore.QSize(25, 25))
+        self.desencriptar_2.setObjectName("desencriptar_2")
+        self.tabWidget.addTab(self.imagen, "")
         frmEncriptar.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(frmEncriptar)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 682, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 682, 26))
         self.menubar.setObjectName("menubar")
         frmEncriptar.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(frmEncriptar)
@@ -123,39 +125,39 @@ class Ui_frmEncriptar(object):
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(frmEncriptar)
 
-        # Llamado a funciones para texto (ya existentes)
+    # Funciones
         self.encriptar.clicked.connect(self.encriptar_texto)
         self.limpiar.clicked.connect(self.limpiar_texto)
         self.desencriptar.clicked.connect(self.desencriptar_texto)
         self.cargar.clicked.connect(self.cargar_archivo)
         self.guardar.clicked.connect(self.guardar_archivo)
-
-        # Llamado a funciones para imagen
-        self.cargar_2.clicked.connect(self.cargar_imagen)  # Para cargar imagen
-        self.encriptar_2.clicked.connect(self.encriptar_imagen)  # Para encriptar imagen
-        self.desencriptar_2.clicked.connect(self.desencriptar_imagen)  # Para desencriptar imagen
-        self.limpiar_2.clicked.connect(self.limpiar_imagen)  # Para limpiar la vista de la imagen
-
+    #Funciones imagen
+        self.encriptar_2.clicked.connect(self.encriptar_img)
+        self.limpiar_2.clicked.connect(self.limpiar_img)
+        self.desencriptar_2.clicked.connect(self.desencriptar_img)
+        self.cargar_2.clicked.connect(self.cargar_img)
+        self.guardar_2.clicked.connect(self.guardar_img)
 
     def retranslateUi(self, frmEncriptar):
         _translate = QtCore.QCoreApplication.translate
         frmEncriptar.setWindowTitle(_translate("frmEncriptar", "MainWindow"))
-        self.guardar.setText(_translate("frmEncriptar", "Guardar Archivo"))
-        self.cargar.setText(_translate("frmEncriptar", "Cargar archivo"))
-        self.label_2.setText(_translate("frmEncriptar", "Mensaje Encriptado"))
-        self.encriptar.setText(_translate("frmEncriptar", "Encriptar"))
-        self.desencriptar.setText(_translate("frmEncriptar", "desencriptar"))
-        self.limpiar.setText(_translate("frmEncriptar", "Limpiar"))
+        self.label_2.setText(_translate("frmEncriptar", "Mensaje Procesado:"))
         self.label.setText(_translate("frmEncriptar", "Mensaje"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.encriptartexto), _translate("frmEncriptar", "encriptar texto"))
-        self.label_3.setText(_translate("frmEncriptar", "Imagen:"))
-        self.encriptar_2.setText(_translate("frmEncriptar", "Encriptar"))
-        self.desencriptar_2.setText(_translate("frmEncriptar", "desencriptar"))
+        self.encriptar.setText(_translate("frmEncriptar", "Encriptar"))
+        self.guardar.setText(_translate("frmEncriptar", "Guardar Archivo"))
+        self.limpiar.setText(_translate("frmEncriptar", "Limpiar"))
+        self.cargar.setText(_translate("frmEncriptar", "Cargar archivo"))
+        self.desencriptar.setText(_translate("frmEncriptar", "Desencriptar"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.texto), _translate("frmEncriptar", "Texto"))
+        self.label_3.setText(_translate("frmEncriptar", "Encriptacion de imagen"))
         self.limpiar_2.setText(_translate("frmEncriptar", "Limpiar"))
+        self.guardar_2.setText(_translate("frmEncriptar", "Guardar Archivo"))
+        self.encriptar_2.setText(_translate("frmEncriptar", "Encriptar"))
         self.cargar_2.setText(_translate("frmEncriptar", "Cargar archivo"))
-        # self.guardar_2.setText(_translate("frmEncriptar", "Guardar Archivo"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.encriptarimagen), _translate("frmEncriptar", "encriptar imagen"))
-    
+        self.desencriptar_2.setText(_translate("frmEncriptar", "Desencriptar"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.imagen), _translate("frmEncriptar", "Imagen"))
+
+
     def encriptar_texto(self):
         texto_original = self.contenido.toPlainText()
         if texto_original.strip():  
@@ -182,42 +184,62 @@ class Ui_frmEncriptar(object):
         self.contenido.clear()
         self.textoencriptado.clear()
 
+
+
     def cargar_archivo(self):
 
         archivo, _ = QFileDialog.getOpenFileName(None, "Abrir archivo", "", "Archivos de texto (*.txt)")
         if archivo:
-            with open(archivo, 'r', encoding='utf-8') as f: 
+            with open(archivo, 'r', encoding='utf-8') as f: #lee el txt cargado
                 contenido = f.read()
                 self.contenido.setText(contenido)
 
     def guardar_archivo(self):
-        archivo, _ = QFileDialog.getSaveFileName(None, "Guardar archivo", "", "Archivos de texto (*.txt)")
+       pass
+
+
+    def cargar_img(self):
+        archivo, _ = QFileDialog.getOpenFileName(None, "Abrir archivo", "", "Archivos de imagen (*.jpg, *.png);;Archivos encriptados (*.enc)")
         if archivo:
-            texto_a_guardar = self.textoencriptado.text().strip()
-            with open(archivo, 'w', encoding='utf-8') as f:
-                    f.write(texto_a_guardar)
-           
+            if archivo.endswith('.enc'):
+                self.archivo_encriptado = archivo
+                QtWidgets.QMessageBox.information(None, "Imagen encriptada", "Archivo cargado")
+            else:
+                # Si es una imagen normal, la cargamos para encriptar
+                pixmap = QtGui.QPixmap(archivo)  # Cargamos la imagen en un pixmap
+                self.imagenencriptada.setPixmap(pixmap.scaled(561, 431, QtCore.Qt.KeepAspectRatio))
+                self.archivo_imagen = archivo  # Guardamos la ruta de la imagen cargada
 
-    def cargar_imagen(self):
-        pass
+    def encriptar_img(self):
+        if hasattr(self, 'archivo_imagen'):  # Verificar si se cargó una imagen
+            imagen_encriptada = encriptar_imagen(self.archivo_imagen)
+            # Guardamos la imagen encriptada en una variable
+            self.imagen_encriptada_bytes = imagen_encriptada
+            QtWidgets.QMessageBox.information(None, "Éxito", "Imagen encriptada con éxito.")
+        else:
+            QtWidgets.QMessageBox.warning(None, "Error", "No se ha cargado ninguna imagen para encriptar.")
+
+    def desencriptar_img(self):
+        if hasattr(self, 'archivo_encriptado'):  # Verificar si se cargó un archivo .enc
+            with open(self.archivo_encriptado, 'rb') as f:
+                imagen_encriptada = f.read()  # Leemos los bytes encriptados de un archivo
+            archivo_guardado, _ = QFileDialog.getSaveFileName(None, "Guardar imagen desencriptada", "", "Imagen (*.png *.jpg)")
+            if archivo_guardado:
+                desencriptar_imagen(imagen_encriptada, archivo_guardado)  # Desencriptamos y guardamos la imagen
+                QtWidgets.QMessageBox.information(None, "Éxito", "Imagen desencriptada y guardada con éxito.")
+        else:
+            QtWidgets.QMessageBox.warning(None, "Error", "No se ha seleccionado un archivo encriptado para desencriptar.")
+
+    def guardar_img(self):
+        if hasattr(self, 'imagen_encriptada_bytes'):  # Verificar si se ha encriptado una imagen
+            archivo_guardar, _ = QFileDialog.getSaveFileName(None, "Guardar imagen encriptada", "", "Imagen encriptada (*.enc)")
+            if archivo_guardar:
+                with open(archivo_guardar, 'wb') as f:
+                    f.write(self.imagen_encriptada_bytes)  # Guardamos los bytes encriptados como un archivo
+                QtWidgets.QMessageBox.information(None, "Éxito", "Imagen encriptada guardada exitosamente.")
+        else:
+            QtWidgets.QMessageBox.warning(None, "Error", "No se ha encriptado ninguna imagen aún.")
     
-    def encriptar_imagen(self):
-        pass
-        
-    def desencriptar_imagen(self):
-        pass
-            
-    def limpiar_imagen(self):
-        pass
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    frmEncriptar = QtWidgets.QMainWindow()
-    ui = Ui_frmEncriptar()
-    ui.setupUi(frmEncriptar)
-    frmEncriptar.show()
-    sys.exit(app.exec_())
-
-    
+    def limpiar_img(self):
+        # Limpiar la imagen cargada y cualquier estado anterior
+        self.imagenencriptada.clear()
